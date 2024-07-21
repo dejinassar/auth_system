@@ -13,4 +13,4 @@ A simple authentication system built with PHP.
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-username/auth_system.git
+   git clone https://github.com/dejinassar/auth_system.git
