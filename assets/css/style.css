@@ -54,6 +54,7 @@ form div {
     margin-bottom: 15px;
 }
 
+
 form label {
     display: block;
     margin-bottom: 5px;
@@ -83,3 +84,13 @@ form button:hover {
     height: 100px;
     border-radius: 50%;
 }
+/* .remember-me {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; 
+}
+
+.remember-me input[type="checkbox"] {
+    margin-right: 5px; 
+
+} */

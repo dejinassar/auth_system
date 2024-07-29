@@ -22,7 +22,9 @@ if (!$user) {
 ?>
 <h1>Dashboard</h1>
 <p>Welcome, <?php echo htmlspecialchars($user['firstname']) . ' ' . htmlspecialchars($user['lastname']); ?>!</p>
-<img class="profile-picture" src="../assets/images/profile_pictures/<?php echo htmlspecialchars($user['profile_picture']); ?>" alt="Profile Picture">
+<?php if (!empty($user['profile_picture'])): ?>
+    <img class="profile-picture" src="../assets/images/profile_pictures/<?php echo htmlspecialchars($user['profile_picture']); ?>" alt="Profile Picture">
+<?php endif; ?>
 <form action="../actions/update_profile.php" method="post" enctype="multipart/form-data">
     <div class="mb-4">
         <label>First Name</label>

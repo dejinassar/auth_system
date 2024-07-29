@@ -14,18 +14,30 @@
             <div class="mb-4">
                 <label for="firstname">First Name</label>
                 <input type="text" id="firstname" name="firstname" required>
+                <?php if (isset($_GET['firstname_error'])): ?>
+                    <p style="color: red;"><?php echo $_GET['firstname_error']; ?></p>
+                <?php endif; ?>
             </div>
             <div class="mb-4">
                 <label for="lastname">Last Name</label>
                 <input type="text" id="lastname" name="lastname" required>
+                <?php if (isset($_GET['lastname_error'])): ?>
+                    <p style="color: red;"><?php echo $_GET['lastname_error']; ?></p>
+                <?php endif; ?>
             </div>
             <div class="mb-4">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" required>
+                <?php if (isset($_GET['email_error'])): ?>
+                    <p style="color: red;"><?php echo $_GET['email_error']; ?></p>
+                <?php endif; ?>
             </div>
             <div class="mb-4">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required>
+                <?php if (isset($_GET['password_error'])): ?>
+                    <p style="color: red;"><?php echo $_GET['password_error']; ?></p>
+                <?php endif; ?>
             </div>
             <button type="submit">Register</button>
         </form>

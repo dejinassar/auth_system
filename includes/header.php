@@ -1,6 +1,13 @@
 <?php
 session_start();
 require '../config/config.php';
+
+// Check if session variables are not set but cookies are set
+if (!isset($_SESSION['user_id']) && isset($_COOKIE['user_id'])) {
+    $_SESSION['user_id'] = $_COOKIE['user_id'];
+    $_SESSION['firstname'] = $_COOKIE['firstname'];
+    $_SESSION['lastname'] = $_COOKIE['lastname'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
