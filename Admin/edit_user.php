@@ -7,12 +7,20 @@ if (!isset($_SESSION['id'])) {
 
 include("../config/config.php");
 
+$adminId = $_SESSION['id'];
+$adminEmail = $_SESSION['email'];
+
 if (isset($_GET['id'])) {
     $userId = $_GET['id'];
     try {
         $stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
         $stmt->execute([$userId]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        // Fetch profile picture
+    $profileStmt = $pdo->prepare("SELECT profile_picture FROM admin WHERE id = ?");
+    $profileStmt->execute([$adminId]);
+    $profilePic = $profileStmt->fetch(PDO::FETCH_ASSOC)['profile_picture'];
+
     } catch (PDOException $e) {
         die("Could not fetch user: " . $e->getMessage());
     }
@@ -99,6 +107,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             border-radius: 50%;
             margin-bottom: 10px;
         }
+        .profile-pic {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .sidebar .profile-info {
+            text-align: center;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .sidebar .profile-info img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+        .sidebar .profile-info h5 {
+            margin-top: 10px;
+            color: #ffffff;
+        }
+      
         .card {
             border: none;
             border-radius: 10px;
@@ -130,8 +160,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <div class="sidebar">
         <div class="text-center mb-4">
-            <img src="path_to_profile_pic.jpg" class="profile-pic" alt="Profile Picture">
+        <div class="profile-info">
+            <img src="<?php echo htmlspecialchars($profilePic ? $profilePic : 'default_profile_pic.jpg'); ?>" alt="Profile Picture">
+     
             <h5 class="mt-2"><?php echo htmlspecialchars($adminEmail); ?></h5>
+        </div>
         </div>
         <a href="Dashboard.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
         <a href="users.php" class="active"><i class="fas fa-users"></i> Users</a>
